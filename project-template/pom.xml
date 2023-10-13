@@ -44,6 +44,8 @@
         <maven-site-plugin.version>4.0.0-M9</maven-site-plugin.version>
 
         <jacoco-maven-plugin.version>0.8.10</jacoco-maven-plugin.version>
+        <maven.compiler.source>16</maven.compiler.source>
+        <maven.compiler.target>16</maven.compiler.target>
     </properties>
 
     <dependencyManagement>
