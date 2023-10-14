@@ -7,7 +7,7 @@ public class Task1 {
         int minutes = Integer.parseInt(separate[0]);
         int seconds = Integer.parseInt(separate[1]);
 
-        if (seconds > 59){
+        if (seconds > 59 || seconds < 0 || minutes < 0){
             return -1;
         }
         return minutes * 60 + seconds;
