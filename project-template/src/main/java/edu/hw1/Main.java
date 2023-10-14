@@ -13,7 +13,7 @@ public final class Main {
 
     public static void main(String[] args) {
 
-        LOGGER.info("Привет, мир!");
-
+        System.out.println(Task5.isPalindromeDescendant(1111112));
+        System.out.println(Task5.isPalindromeDescendant(121212));
     }
 }

@@ -1,54 +1,54 @@
 package edu.hw1;
 
-
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.DisplayName;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestForTask2 {
     @Test
-    public final void test1(){
+    public final void test1() {
 
-        Integer expectedResult = 4;
+        int expectedResult = 4;
 
-        Integer actualResult = Task2.countDigits(4666);
-
-        assertThat(actualResult).isEqualTo(expectedResult);
+        assertEquals(expectedResult, Task2.countDigits(4666));
     }
+
     @Test
-    public final void test2(){
+    public final void test2() {
 
-        Integer expectedResult = 10;
+        int expectedResult = 10;
 
-        Integer actualResult = Task2.countDigits(1234567890);
-
-        assertThat(actualResult).isEqualTo(expectedResult);
+        assertEquals(expectedResult, Task2.countDigits(1234567890));
     }
+
     @Test
-    public final void test3(){
+    public final void test3() {
 
-        Integer expectedResult = 1;
+        int expectedResult = 1;
 
-        Integer actualResult = Task2.countDigits(0);
-
-        assertThat(actualResult).isEqualTo(expectedResult);
+        assertEquals(expectedResult, Task2.countDigits(0));
     }
+
     @Test
-    public final void test4(){
+    public final void test4() {
 
-        Integer expectedResult = 1;
+        int expectedResult = 1;
 
-        Integer actualResult = Task2.countDigits(5);
-
-        assertThat(actualResult).isEqualTo(expectedResult);
+        assertEquals(expectedResult, Task2.countDigits(5));
     }
+
     @Test
-    public final void test5(){
+    public final void test5() {
 
-        Integer expectedResult = 2;
+        int expectedResult = 2;
 
-        Integer actualResult = Task2.countDigits(10);
+        assertEquals(expectedResult, Task2.countDigits(5));
+    }
 
-        assertThat(actualResult).isEqualTo(expectedResult);
+    @Test
+    public final void test6() {
+
+        int expectedResult = 3;
+
+        assertEquals(expectedResult, Task2.countDigits(-123));
     }
 }

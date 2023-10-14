@@ -1,59 +1,61 @@
 package edu.hw1;
 
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestForTask1 {
     @Test
     @DisplayName("Okay")
-    public final void test1(){
+    public final void test1() {
 
-        Integer expectedResult = 60;
+        int expectedResult = 60;
 
-        Integer actualResult = Task1.minutesToSeconds("01:00");
-
-        assertThat(actualResult).isEqualTo(expectedResult);
+        assertEquals(expectedResult, Task1.minutesToSeconds("01:00"));
     }
+
     @Test
     @DisplayName("Wrong seconds format")
-    public final void test2(){
+    public final void test2() {
 
-        Integer expectedResult = -1;
+        int expectedResult = -1;
 
-        Integer actualResult = Task1.minutesToSeconds("01:60");
-
-        assertThat(actualResult).isEqualTo(expectedResult);
+        assertEquals(expectedResult, Task1.minutesToSeconds("01:60"));
     }
+
     @Test
     @DisplayName("Negative values")
-    public final void test3(){
+    public final void test3() {
 
-        Integer expectedResult = -1;
+        int expectedResult = -1;
 
-        Integer actualResult = Task1.minutesToSeconds("-01:00");
-
-        assertThat(actualResult).isEqualTo(expectedResult);
+        assertEquals(expectedResult, Task1.minutesToSeconds("-01:00"));
     }
+
     @Test
     @DisplayName("Okay")
-    public final void test4(){
+    public final void test4() {
 
-        Integer expectedResult = 59 * 60 + 59;
+        int expectedResult = 59 * 60 + 59;
 
-        Integer actualResult = Task1.minutesToSeconds("59:59");
-
-        assertThat(actualResult).isEqualTo(expectedResult);
+        assertEquals(expectedResult, Task1.minutesToSeconds("59:59"));
     }
+
     @Test
     @DisplayName("Okay")
-    public final void test5(){
+    public final void test5() {
 
-        Integer expectedResult = 9999 * 60;
+        int expectedResult = 9999 * 60;
 
-        Integer actualResult = Task1.minutesToSeconds("9999:00");
+        assertEquals(expectedResult, Task1.minutesToSeconds("9999:00"));
+    }
 
-        assertThat(actualResult).isEqualTo(expectedResult);
+    @Test
+    @DisplayName("More than 2 digits between :")
+    public final void test6() {
+
+        int expectedResult = -1;
+
+        assertEquals(expectedResult, Task1.minutesToSeconds("01:00:00"));
     }
 }
