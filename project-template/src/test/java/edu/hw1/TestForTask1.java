@@ -58,4 +58,12 @@ public class TestForTask1 {
 
         assertEquals(expectedResult, Task1.minutesToSeconds("01:00:00"));
     }
+    @Test
+    @DisplayName("More than 2 digits between :")
+    public final void test7() {
+
+        int expectedResult = -1;
+
+        assertEquals(expectedResult, Task1.minutesToSeconds("123"));
+    }
 }

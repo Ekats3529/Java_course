@@ -39,7 +39,7 @@ public class TestForTask2 {
     @Test
     public final void test5() {
 
-        int expectedResult = 2;
+        int expectedResult = 1;
 
         assertEquals(expectedResult, Task2.countDigits(5));
     }
@@ -50,5 +50,13 @@ public class TestForTask2 {
         int expectedResult = 3;
 
         assertEquals(expectedResult, Task2.countDigits(-123));
+    }
+
+    @Test
+    public final void test7() {
+
+        int expectedResult = 10;
+
+        assertEquals(expectedResult, Task2.countDigits(Integer.MIN_VALUE));
     }
 }
