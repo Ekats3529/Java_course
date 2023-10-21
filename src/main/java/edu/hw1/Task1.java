@@ -1,10 +1,11 @@
 package edu.hw1;
 
-public class Task1 {
+class Task1 {
+    @SuppressWarnings("MagicNumber")
 
-    public static Integer minutesToSeconds(String time) {
+    public Integer minutesToSeconds(String time) {
         String[] separate = time.split(":");
-        if (separate.length != 2){
+        if (separate.length != 2) {
             return -1;
         }
         int minutes = Integer.parseInt(separate[0]);

@@ -1,10 +1,12 @@
 package edu.hw1;
 
-public class Task8 {
+@SuppressWarnings("MagicNumber")
+class Task8 {
     static int[] dx = {2, 2, -2, -2, 1, -1, 1, -1};
+
     static int[] dy = {1, -1, 1, -1, 2, 2, -2, -2};
 
-    public static boolean knightBoardCapture(int[][] board) {
+    public boolean knightBoardCapture(int[][] board) {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 if (board[i][j] == 1) {

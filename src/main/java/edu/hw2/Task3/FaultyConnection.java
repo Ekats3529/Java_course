@@ -6,10 +6,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class FaultyConnection implements Connection {
-    Logger LOGGER = LogManager.getLogger();
+    Logger logger = LogManager.getLogger();
+
     @Override
     public void execute(String command) throws ConnectionException {
-        LOGGER.info("Fault - Executed command: " + command);
+        logger.info("Fault - Executed command: " + command);
     }
 
     @Override

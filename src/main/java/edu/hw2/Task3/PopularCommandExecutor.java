@@ -7,7 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public final class PopularCommandExecutor {
-    Logger LOGGER = LogManager.getLogger();
+    Logger logger = LogManager.getLogger();
     private final ConnectionManager manager;
     private final int maxAttempts;
 
@@ -28,7 +28,7 @@ public final class PopularCommandExecutor {
                     return;
                 }
             } catch (Exception exception) {
-                LOGGER.info(exception);
+                logger.info(exception);
             }
         }
         throw new ConnectionException();

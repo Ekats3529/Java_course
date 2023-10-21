@@ -1,7 +1,7 @@
 package edu.hw1;
 
-public class Task4 {
-    public static String fixString(String str) {
+class Task4 {
+    public String fixString(String str) {
         StringBuilder result = new StringBuilder();
         for (int i = 1; i < str.length(); i += 2) {
             result.append(str.charAt(i));

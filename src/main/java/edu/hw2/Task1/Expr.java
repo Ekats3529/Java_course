@@ -11,9 +11,10 @@ public sealed interface Expr {
     }
 
     public record Negate(double digit) implements Expr {
-        public Negate(Expr expr){
+        public Negate(Expr expr) {
             this(expr.evaluate());
         }
+
         @Override
         public double evaluate() {
             return -digit;
@@ -21,9 +22,10 @@ public sealed interface Expr {
     }
 
     public record Exponent(double digit, int pow) implements Expr {
-        public Exponent(Expr expr, int pow){
+        public Exponent(Expr expr, int pow) {
             this(expr.evaluate(), pow);
         }
+
         @Override
         public double evaluate() {
             double result = 1;
@@ -41,9 +43,10 @@ public sealed interface Expr {
     }
 
     public record Addition(double digit1, double digit2) implements Expr {
-        public Addition(Expr expr1, Expr expr2){
+        public Addition(Expr expr1, Expr expr2) {
             this(expr1.evaluate(), expr2.evaluate());
         }
+
         @Override
         public double evaluate() {
             return digit1 + digit2;
@@ -51,9 +54,10 @@ public sealed interface Expr {
     }
 
     public record Multiplication(double digit1, double digit2) implements Expr {
-        public Multiplication(Expr expr1, Expr expr2){
+        public Multiplication(Expr expr1, Expr expr2) {
             this(expr1.evaluate(), expr2.evaluate());
         }
+
         @Override
         public double evaluate() {
             return digit1 * digit2;
