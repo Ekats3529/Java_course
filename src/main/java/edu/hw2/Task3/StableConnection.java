@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 
 public class StableConnection implements Connection {
     Logger LOGGER = LogManager.getLogger();
+
     @Override
     public void execute(String command) {
         LOGGER.info("Stable - Executed command: " + command);
