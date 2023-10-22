@@ -5,16 +5,16 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class TestForDictionary {
-    Dictionary dictionary = new Dictionary();
+    Dictionary dictionary = new SimpleDictionary();
 
     @Test
     @DisplayName("Add the word")
     void test1() {
 
-        String word = "anything";
+        String word = "ANYTHING";
 
         dictionary.addWordToDictionary(word);
 
-        assertThat(dictionary.getDictionary()).asList().contains(word);
+        assertThat(dictionary.getDictionary()).asList().contains("anything");
     }
 }

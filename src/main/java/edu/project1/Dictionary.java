@@ -1,24 +1,12 @@
 package edu.project1;
 
 import java.util.List;
-import java.util.Random;
+import org.jetbrains.annotations.NotNull;
 
-class Dictionary {
+public interface Dictionary {
+    @NotNull String randomWord();
 
-    private List<String> dictionary = List.of("education", "house", "hello", "animal");
-    private final Random random = new Random();
+    void addWordToDictionary(String word);
 
-    public String getRandomWord(){
-        return dictionary.get(random.nextInt(dictionary.size()));
-    }
-
-    public List<String> getDictionary(){
-        return dictionary;
-    }
-
-    public void addWordToDictionary(String word){
-        String newWord = word.toLowerCase();
-        dictionary.add(newWord);
-    }
-
+    List<String> getDictionary();
 }
