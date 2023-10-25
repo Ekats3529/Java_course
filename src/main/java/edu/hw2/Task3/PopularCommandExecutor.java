@@ -10,6 +10,8 @@ public final class PopularCommandExecutor {
     Logger logger = LogManager.getLogger();
     private final ConnectionManager manager;
     private final int maxAttempts;
+    ConnectionException exc = null;
+
 
     public PopularCommandExecutor(ConnectionManager manager, int maxAttempts) {
         this.manager = manager;
@@ -28,9 +30,15 @@ public final class PopularCommandExecutor {
                     return;
                 }
             } catch (Exception exception) {
-                logger.info(exception);
+                if (exc == null) {
+                    exc = (ConnectionException) exception;
+                } else {
+                    exc.addSuppressed(exception);
+                }
             }
         }
-        throw new ConnectionException();
+        if (exc != null) {
+            throw exc;
+        }
     }
 }

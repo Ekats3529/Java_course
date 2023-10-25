@@ -14,6 +14,6 @@ class StableConnection implements Connection {
 
     @Override
     public void close() throws Exception {
-
+        logger.info("Connection closed");
     }
 }

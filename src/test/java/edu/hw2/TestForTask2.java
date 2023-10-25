@@ -20,10 +20,14 @@ public class TestForTask2 {
     @ParameterizedTest
     @MethodSource("rectangles")
     void rectangleArea(Rectangle rect) {
-        rect.setWidth(20);
-        rect.setHeight(10);
+        rect = rect.setWidth(20);
+        rect = rect.setHeight(10);
 
-        assertEquals(200.0, rect.area());
+        if (rect instanceof Square){
+            assertEquals(100.0, rect.area());
+        } else{
+            assertEquals(200.0, rect.area());
+        }
     }
 
 }

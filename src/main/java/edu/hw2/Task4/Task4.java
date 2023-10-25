@@ -5,11 +5,11 @@ public class Task4 {
     private Task4() {
     }
 
-    public static CallingInfo callingInfo(Throwable throwable) {
-        var stackTrace = throwable.getStackTrace();
+    public static CallingInfo callingInfo() {
+        var stackTrace = Thread.currentThread().getStackTrace();
 
-        String className = stackTrace[0].getClassName();
-        String methodName = stackTrace[0].getMethodName();
+        String className = stackTrace[1].getClassName();
+        String methodName = stackTrace[1].getMethodName();
         return new CallingInfo(className, methodName);
     }
 }

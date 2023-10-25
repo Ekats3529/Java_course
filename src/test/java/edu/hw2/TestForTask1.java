@@ -18,6 +18,8 @@ public class TestForTask1 {
 
         double expectedResult = 37.0;
 
+        System.out.println(res + " = " + res.evaluate());
+
         assertEquals(expectedResult, res.evaluate());
     }
 
@@ -25,7 +27,8 @@ public class TestForTask1 {
     public final void test2() {
 
         double expectedResult = 1;
-        var exp = new Expr.Exponent(6, 0);
+        var six = new Expr.Constant(6);
+        var exp = new Expr.Exponent(six, 0);
 
         assertEquals(expectedResult, exp.evaluate());
     }
@@ -34,7 +37,8 @@ public class TestForTask1 {
     public final void test3() {
 
         double expectedResult = 1. / 36;
-        var exp = new Expr.Exponent(6, -2);
+        var six = new Expr.Constant(6);
+        var exp = new Expr.Exponent(six, -2);
 
         assertEquals(expectedResult, exp.evaluate());
     }
