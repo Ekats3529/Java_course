@@ -2,9 +2,9 @@ package edu.hw2.Task3;
 
 import edu.hw2.Task3.interfaces.Connection;
 import edu.hw2.Task3.interfaces.ConnectionException;
+import java.util.Random;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import java.util.Random;
 
 public class FaultyConnection implements Connection {
     Logger logger = LogManager.getLogger();
@@ -14,7 +14,7 @@ public class FaultyConnection implements Connection {
     public void execute(String command) throws ConnectionException {
         logger.info("Fault - Executed command: " + command);
         if (random.nextBoolean()) {
-            throw  new ConnectionException();
+            throw new ConnectionException("Fault execution");
         }
     }
 
