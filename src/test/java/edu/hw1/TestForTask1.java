@@ -5,13 +5,14 @@ import org.junit.jupiter.api.DisplayName;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestForTask1 {
+    Task1 task1 = new Task1();
     @Test
     @DisplayName("Okay")
     public final void test1() {
 
         int expectedResult = 60;
 
-        assertEquals(expectedResult, Task1.minutesToSeconds("01:00"));
+        assertEquals(expectedResult, task1.minutesToSeconds("01:00"));
     }
 
     @Test
@@ -20,7 +21,7 @@ public class TestForTask1 {
 
         int expectedResult = -1;
 
-        assertEquals(expectedResult, Task1.minutesToSeconds("01:60"));
+        assertEquals(expectedResult, task1.minutesToSeconds("01:60"));
     }
 
     @Test
@@ -29,7 +30,7 @@ public class TestForTask1 {
 
         int expectedResult = -1;
 
-        assertEquals(expectedResult, Task1.minutesToSeconds("-01:00"));
+        assertEquals(expectedResult, task1.minutesToSeconds("-01:00"));
     }
 
     @Test
@@ -38,7 +39,7 @@ public class TestForTask1 {
 
         int expectedResult = 59 * 60 + 59;
 
-        assertEquals(expectedResult, Task1.minutesToSeconds("59:59"));
+        assertEquals(expectedResult, task1.minutesToSeconds("59:59"));
     }
 
     @Test
@@ -47,7 +48,7 @@ public class TestForTask1 {
 
         int expectedResult = 9999 * 60;
 
-        assertEquals(expectedResult, Task1.minutesToSeconds("9999:00"));
+        assertEquals(expectedResult, task1.minutesToSeconds("9999:00"));
     }
 
     @Test
@@ -56,7 +57,7 @@ public class TestForTask1 {
 
         int expectedResult = -1;
 
-        assertEquals(expectedResult, Task1.minutesToSeconds("01:00:00"));
+        assertEquals(expectedResult, task1.minutesToSeconds("01:00:00"));
     }
     @Test
     @DisplayName("More than 2 digits between :")
@@ -64,6 +65,6 @@ public class TestForTask1 {
 
         int expectedResult = -1;
 
-        assertEquals(expectedResult, Task1.minutesToSeconds("123"));
+        assertEquals(expectedResult, task1.minutesToSeconds("123"));
     }
 }

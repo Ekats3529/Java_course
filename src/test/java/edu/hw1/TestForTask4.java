@@ -4,12 +4,13 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestForTask4 {
+    Task4 task4 = new Task4();
     @Test
     public final void test1() {
 
         String expectedResult = "214365";
 
-        String actualResult = Task4.fixString("123456");
+        String actualResult = task4.fixString("123456");
 
         assertEquals(expectedResult, actualResult);
     }
@@ -19,7 +20,7 @@ public class TestForTask4 {
 
         String expectedResult = "abcde";
 
-        String actualResult = Task4.fixString("badce");
+        String actualResult = task4.fixString("badce");
 
         assertEquals(expectedResult, actualResult);
     }
@@ -29,7 +30,7 @@ public class TestForTask4 {
 
         String expectedResult = "This is a mixed up string.";
 
-        String actualResult = Task4.fixString("hTsii  s aimex dpus rtni.g");
+        String actualResult = task4.fixString("hTsii  s aimex dpus rtni.g");
 
         assertEquals(expectedResult, actualResult);
     }

@@ -4,12 +4,13 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestForTask7 {
+    Task7 task7 = new Task7();
     @Test
     public final void test1() {
 
         int expectedResult = 4;
 
-        int actualResult = Task7.rotateRight(8, 1);
+        int actualResult = task7.rotateRight(8, 1);
 
         assertEquals(expectedResult, actualResult);
     }
@@ -19,7 +20,7 @@ public class TestForTask7 {
 
         int expectedResult = 32;
 
-        int actualResult = Task7.rotateLeft(16, 1);
+        int actualResult = task7.rotateLeft(16, 1);
 
         assertEquals(expectedResult, actualResult);
     }
@@ -29,7 +30,7 @@ public class TestForTask7 {
 
         int expectedResult = 68;
 
-        int actualResult = Task7.rotateLeft(17, 2);
+        int actualResult = task7.rotateLeft(17, 2);
 
         assertEquals(expectedResult, actualResult);
     }

@@ -4,12 +4,13 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestForTask2 {
+    Task2 task2 = new Task2();
     @Test
     public final void test1() {
 
         int expectedResult = 4;
 
-        assertEquals(expectedResult, Task2.countDigits(4666));
+        assertEquals(expectedResult, task2.countDigits(4666));
     }
 
     @Test
@@ -17,7 +18,7 @@ public class TestForTask2 {
 
         int expectedResult = 10;
 
-        assertEquals(expectedResult, Task2.countDigits(1234567890));
+        assertEquals(expectedResult, task2.countDigits(1234567890));
     }
 
     @Test
@@ -25,7 +26,7 @@ public class TestForTask2 {
 
         int expectedResult = 1;
 
-        assertEquals(expectedResult, Task2.countDigits(0));
+        assertEquals(expectedResult, task2.countDigits(0));
     }
 
     @Test
@@ -33,7 +34,7 @@ public class TestForTask2 {
 
         int expectedResult = 1;
 
-        assertEquals(expectedResult, Task2.countDigits(5));
+        assertEquals(expectedResult, task2.countDigits(5));
     }
 
     @Test
@@ -41,7 +42,7 @@ public class TestForTask2 {
 
         int expectedResult = 1;
 
-        assertEquals(expectedResult, Task2.countDigits(5));
+        assertEquals(expectedResult, task2.countDigits(5));
     }
 
     @Test
@@ -49,7 +50,7 @@ public class TestForTask2 {
 
         int expectedResult = 3;
 
-        assertEquals(expectedResult, Task2.countDigits(-123));
+        assertEquals(expectedResult, task2.countDigits(-123));
     }
 
     @Test
@@ -57,6 +58,6 @@ public class TestForTask2 {
 
         int expectedResult = 10;
 
-        assertEquals(expectedResult, Task2.countDigits(Integer.MIN_VALUE));
+        assertEquals(expectedResult, task2.countDigits(Integer.MIN_VALUE));
     }
 }

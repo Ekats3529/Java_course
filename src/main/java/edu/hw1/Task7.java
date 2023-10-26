@@ -1,13 +1,15 @@
 package edu.hw1;
 
-public class Task7 {
+class Task7 {
+    @SuppressWarnings("MagicNumber")
 
-    public static int rotateLeft(int n, int shift) {
+    public int rotateLeft(int n, int shift) {
 
         return (n << shift) | (n >> (32 - shift));
     }
 
-    public static int rotateRight(int n, int shift) {
+    @SuppressWarnings("MagicNumber")
+    public int rotateRight(int n, int shift) {
 
         return (n >> shift) | (n << (32 - shift));
 
