@@ -29,7 +29,7 @@ class Task4 {
         .sorted(Collections.reverseOrder())
         .toList();
 
-    Task4() {
+    private Task4() {
 
     }
 
