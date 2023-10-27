@@ -4,10 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 class Task3 {
-    public Task3() {
-
-    }
-
     public <T> Map<T, Integer> freqDict(Iterable<T> arrayList) {
         Map<T, Integer> dict = new HashMap<>();
 

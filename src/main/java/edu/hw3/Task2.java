@@ -5,10 +5,6 @@ import java.util.List;
 import java.util.Stack;
 
 class Task2 {
-    public Task2() {
-
-    }
-
     public List<String> clusterize(String str) {
 
         List<String> result = new ArrayList<>();
