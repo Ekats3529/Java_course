@@ -7,7 +7,6 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestForTask4 {
-    Task4 task4 = new Task4();
 
     static Stream<Arguments> decimalToRomanTestArguments() {
         return Stream.of(
