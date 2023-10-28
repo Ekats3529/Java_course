@@ -1,7 +1,7 @@
 package edu.hw3.Task5;
 
-import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
+import org.jetbrains.annotations.NotNull;
 
 public class Contact implements Comparable<Contact> {
     private String name;
@@ -32,6 +32,7 @@ public class Contact implements Comparable<Contact> {
             return this.surname.compareTo(o.surname);
         }
     }
+
     @Override public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -43,4 +44,8 @@ public class Contact implements Comparable<Contact> {
         return Objects.equals(name, contact.name) && Objects.equals(surname, contact.surname);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, surname);
+    }
 }

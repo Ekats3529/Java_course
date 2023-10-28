@@ -1,7 +1,7 @@
 package edu.hw3.Task6;
 
-import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
+import org.jetbrains.annotations.NotNull;
 
 public record Stock(String name, Integer cost) implements Comparable<Stock> {
     @Override
@@ -20,6 +20,10 @@ public record Stock(String name, Integer cost) implements Comparable<Stock> {
         return Objects.equals(name, stock.name) && Objects.equals(cost, stock.cost);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, cost);
+    }
 }
 
 
