@@ -1,6 +1,7 @@
 package edu.project1;
 
+import edu.project1.GuessResult;
 import org.jetbrains.annotations.NotNull;
 
-record Win(char[] state, int attempt, int maxAttempts, @NotNull String message) implements GuessResult {
+public record Win(char[] state, int attempt, int maxAttempts, @NotNull String message) implements GuessResult {
 }

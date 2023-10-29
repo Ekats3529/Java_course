@@ -4,22 +4,19 @@ import java.util.Objects;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
-public class ConsoleHangman {
-    private final Dictionary dictionary;
-    private final int maxAttempts;
+public class ConsoleHangman extends HangmanGame{
+    private static final int MAX_ATTEMPTS = 5;
 
     private final Logger logger = Logger.getLogger(ConsoleHangman.class.getName());
 
     private static final String QUIT_WORD = "quit";
 
-    ConsoleHangman(Dictionary dictionary, int maxAttempts) {
-        this.dictionary = dictionary;
-        this.maxAttempts = maxAttempts;
+    ConsoleHangman(Player player, String wordToGuess) {
+        super(player, wordToGuess);
     }
 
     public void run() {
-        String wordToGuess = dictionary.randomWord();
-        Session session = new Session(wordToGuess, maxAttempts);
+        Session session = new Session(this.wordToGuess, MAX_ATTEMPTS);
         Scanner scanner = new Scanner(System.in);
 
         while (true) {

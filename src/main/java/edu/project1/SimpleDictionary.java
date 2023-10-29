@@ -3,6 +3,7 @@ package edu.project1;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
 import org.jetbrains.annotations.NotNull;
 
 class SimpleDictionary implements Dictionary {
