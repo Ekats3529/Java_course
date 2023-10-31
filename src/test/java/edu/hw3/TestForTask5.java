@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
 public class TestForTask5 {
     static Stream<Arguments> contactManagerParameters() {
         return Stream.of(
@@ -27,7 +26,8 @@ public class TestForTask5 {
             Arguments.of(
                 List.of("Paul Erdos", "Leonhard Euler", "Carl Gauss"),
                 "DESC",
-                List.of(new Contact("Carl Gauss"),
+                List.of(
+                    new Contact("Carl Gauss"),
                     new Contact("Leonhard Euler"),
                     new Contact("Paul Erdos")
                 )

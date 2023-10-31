@@ -2,8 +2,18 @@ package edu.hw3;
 
 class Task1 {
 
-    private static final String ALPHABET = "abcdefghijklmnopqrstuvwxyz";
-    private static final int ALPHABET_SIZE = 26;
+    private static final int ALPHABET_SIZE;
+
+    private static final String ALPHABET;
+
+    static {
+        StringBuilder sb = new StringBuilder();
+        for (char ch = 'a'; ch <= 'z'; ch++) {
+            sb.append(ch);
+        }
+        ALPHABET = sb.toString();
+        ALPHABET_SIZE = sb.length();
+    }
 
     public String atbash(String str) {
         StringBuilder result = new StringBuilder();
