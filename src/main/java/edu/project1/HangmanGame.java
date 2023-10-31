@@ -4,7 +4,7 @@ public class HangmanGame {
     Player player;
     String wordToGuess;
 
-    public HangmanGame(Player player, String word){
+    public HangmanGame(Player player, String word) {
         this.player = player;
         wordToGuess = word;
     }
