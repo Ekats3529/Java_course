@@ -820,4 +820,55 @@ public class TestForMethods {
         assertTrue(actual);
 
     }
+
+    @Test
+    @DisplayName("task 18")
+    public final void test18() {
+        Animal animal1 = new Animal(
+            "aaa",
+            Animal.Type.FISH,
+            Animal.Sex.F,
+            4,
+            99,
+            50,
+            false
+        );
+        Animal animal2 = new Animal(
+            "bbb",
+            Animal.Type.FISH,
+            Animal.Sex.F,
+            7,
+            10,
+            40,
+            true
+        );
+        Animal animal3 = new Animal(
+            "ccc",
+            Animal.Type.SPIDER,
+            Animal.Sex.M,
+            12,
+            120,
+            30,
+            true
+        );
+        Animal animal4 = new Animal(
+            "ddd",
+            Animal.Type.DOG,
+            Animal.Sex.F,
+            8,
+            15,
+            20,
+            true
+        );
+
+        List<Animal> animals1 = List.of(animal1, animal3);
+        List<Animal> animals2 = List.of(animal2, animal4);
+
+        List<List<Animal>> animals = List.of(animals1, animals2);
+
+        Animal actual = methods.HeaviestFish(animals);
+
+        assertEquals(animal1, actual);
+
+    }
 }

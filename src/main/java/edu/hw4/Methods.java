@@ -1,5 +1,6 @@
 package edu.hw4;
 
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -171,6 +172,13 @@ public class Methods {
     }
 
     //task 18 Найти самую тяжелую рыбку в 2-х или более списках -> Animal
+    public Animal HeaviestFish(List<List<Animal>> listAnimals) {
+        return listAnimals.stream()
+                .flatMap(Collection::stream)
+                .filter(animal -> animal.type() == Type.FISH)
+                .max(Comparator.comparingInt(Animal::weight))
+                .orElse(null);
+    }
 
     //task 19 Животные, в записях о которых есть ошибки:
     // вернуть имя и список ошибок -> Map<String, Set<ValidationError>>.
