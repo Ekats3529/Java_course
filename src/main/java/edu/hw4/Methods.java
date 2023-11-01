@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import static edu.hw4.Animal.Sex;
 import static edu.hw4.Animal.Type;
 
+@SuppressWarnings("MagicNumber")
 public class Methods {
 
     //task 1 Отсортировать животных по росту от самого маленького
@@ -33,9 +34,9 @@ public class Methods {
     public Map<Type, Long> frequencyDict(List<Animal> animals) {
         return animals.stream()
             .collect(Collectors.groupingBy(
-            Animal::type,
-            Collectors.counting()
-        ));
+                Animal::type,
+                Collectors.counting()
+            ));
     }
 
     //task 4 У какого животного самое длинное имя -> Animal
@@ -96,4 +97,85 @@ public class Methods {
             .filter(animal -> animal.paws() != animal.age())
             .toList();
     }
+
+    //task 11 Список животных, которые могут укусить (bites == true)
+    // и рост которых превышает 100 см -> List<Animal>
+    public List<Animal> canBiteMoreThanHundred(List<Animal> animals) {
+        return animals.stream()
+            .filter(animal -> animal.bites() && animal.height() > 100)
+            .toList();
+    }
+
+    //task 12 Сколько в списке животных, вес которых превышает рост -> Integer
+    public long countWeightGreaterHeight(List<Animal> animals) {
+        return animals.stream()
+            .filter(animal -> animal.weight() > animal.height())
+            .count();
+    }
+
+    //task 13 Список животных, имена которых состоят из более чем двух слов -> List<Animal>
+    public List<Animal> nameMoreTwoWords(List<Animal> animals) {
+        return animals.stream()
+            .filter(animal -> animal.name().split(" ").length > 1)
+            .toList();
+    }
+
+    //task 14 Есть ли в списке собака ростом более k см -> Boolean
+    public Boolean isInListDogMoreThanK(List<Animal> animals, int k) {
+        return animals.stream()
+            .anyMatch(animal -> animal.type() == Type.DOG && animal.height() > k);
+    }
+
+    //task 15 Найти суммарный вес животных каждого вида, которым от k до l лет
+    // -> Map<Animal.Type, Integer>
+    public Map<Type, Integer> sumWeightEachType(List<Animal> animals, int k, int l) {
+        return animals.stream()
+            .filter(animal -> animal.age() <= l && animal.age() >= k)
+            .collect(Collectors.groupingBy(
+                Animal::type,
+                Collectors.summingInt(Animal::weight)
+            ));
+    }
+
+    //task 16 Список животных, отсортированный по виду, затем по полу,
+    // затем по имени -> List<Animal>
+    public List<Animal> sortByTypeSexName(List<Animal> animals) {
+        Comparator<Animal> animalComparator = Comparator
+            .comparing(Animal::type)
+            .thenComparing(Animal::sex)
+            .thenComparing(Animal::name);
+
+        return animals.stream()
+            .sorted(animalComparator)
+            .toList();
+    }
+
+    //task 17 Правда ли, что пауки кусаются чаще, чем собаки ->
+    // Boolean (если данных для ответа недостаточно, вернуть false)
+    public boolean isSpidersBitesMoreThanDogs(List<Animal> animals) {
+        int cntDogs = (int) animals.stream().filter(animal -> animal.type() == Type.DOG).count();
+        int cntSpiders = (int) animals.stream().filter(animal -> animal.type() == Type.SPIDER).count();
+
+        int cntByteDogs = (int) animals.stream()
+            .filter(animal -> animal.type() == Type.DOG && animal.bites())
+            .count();
+
+        int cntByteSpiders = (int) animals.stream()
+            .filter(animal -> animal.type() == Type.SPIDER && animal.bites())
+            .count();
+
+        if (cntDogs * cntSpiders == 0) {
+            return false;
+        }
+        return (double) cntByteSpiders / cntSpiders > (double) cntByteDogs / cntDogs;
+    }
+
+    //task 18 Найти самую тяжелую рыбку в 2-х или более списках -> Animal
+
+    //task 19 Животные, в записях о которых есть ошибки:
+    // вернуть имя и список ошибок -> Map<String, Set<ValidationError>>.
+
+    //task 20 Сделать результат предыдущего задания более читабельным:
+    // вернуть имя и названия полей с ошибками,
+    // объединенные в строку -> Map<String, String>
 }
