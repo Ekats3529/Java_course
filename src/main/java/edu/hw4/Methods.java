@@ -2,9 +2,13 @@ package edu.hw4;
 
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -172,18 +176,174 @@ public class Methods {
     }
 
     //task 18 Найти самую тяжелую рыбку в 2-х или более списках -> Animal
-    public Animal HeaviestFish(List<List<Animal>> listAnimals) {
+    public Animal heaviestFish(List<List<Animal>> listAnimals) {
         return listAnimals.stream()
-                .flatMap(Collection::stream)
-                .filter(animal -> animal.type() == Type.FISH)
-                .max(Comparator.comparingInt(Animal::weight))
-                .orElse(null);
+            .flatMap(Collection::stream)
+            .filter(animal -> animal.type() == Type.FISH)
+            .max(Comparator.comparingInt(Animal::weight))
+            .orElse(null);
     }
 
     //task 19 Животные, в записях о которых есть ошибки:
     // вернуть имя и список ошибок -> Map<String, Set<ValidationError>>.
 
+    public Map<String, Set<ValidationError>> animalError(List<Animal> animals) {
+        return animals.stream()
+            .collect(Collectors.toMap(
+                Animal::name,
+                this::validateAnimal
+            ));
+    }
+
     //task 20 Сделать результат предыдущего задания более читабельным:
     // вернуть имя и названия полей с ошибками,
     // объединенные в строку -> Map<String, String>
+
+    public Map<String, String> animalErrorToString(List<Animal> animals) {
+        return animals.stream()
+            .collect(Collectors.toMap(
+                Animal::name,
+                animal -> {
+                    Set<ValidationError> errors = validateAnimal(animal);
+                    Set<String> errorMessages = new TreeSet<>();
+                    for (var e : errors) {
+                        errorMessages.add(e.type.toString());
+                    }
+                    return String.join("; ", errorMessages);
+                }
+            ));
+    }
+
+    private Set<ValidationError> validateAnimal(Animal animal) {
+        Set<ValidationError> validationErrors = new HashSet<>();
+
+        validationErrors.addAll(validateName(animal.name()));
+        validationErrors.addAll(validateType(animal.type()));
+        validationErrors.addAll(validateSex(animal.sex()));
+        validationErrors.addAll(validateAge(animal.age()));
+        validationErrors.addAll(validateHeight(animal.height()));
+        validationErrors.addAll(validateWeight(animal.weight()));
+
+        return validationErrors;
+    }
+
+    enum ValidationErrorType {
+        NAME,
+        TYPE,
+        SEX,
+        AGE,
+        HEIGHT,
+        WEIGHT
+    }
+
+    private Set<ValidationError> validateName(String name) {
+        Set<ValidationError> validationErrors = new HashSet<>();
+
+        if (name.length() == 0) {
+            validationErrors.add(new ValidationError(
+                "Name must contain at least 1 character",
+                ValidationErrorType.NAME
+            ));
+        } else if (Character.toUpperCase(name.charAt(0)) != name.charAt(0)) {
+            validationErrors.add(new ValidationError(
+                "Name must starts with capital character",
+                ValidationErrorType.NAME
+            ));
+        }
+        return validationErrors;
+    }
+
+    private Set<ValidationError> validateType(Type type) {
+        Set<ValidationError> validationErrors = new HashSet<>();
+
+        if (type == null) {
+            validationErrors.add(new ValidationError(
+                "Type cannot be null",
+                ValidationErrorType.TYPE
+            ));
+        }
+        return validationErrors;
+    }
+
+    private Set<ValidationError> validateSex(Sex sex) {
+        Set<ValidationError> validationErrors = new HashSet<>();
+
+        if (sex == null) {
+            validationErrors.add(new ValidationError(
+                "Sex cannot be null",
+                ValidationErrorType.SEX
+            ));
+        }
+        return validationErrors;
+    }
+
+    private Set<ValidationError> validateAge(int age) {
+        Set<ValidationError> validationErrors = new HashSet<>();
+
+        if (age < 0) {
+            validationErrors.add(new ValidationError(
+                "Age must be non-negative",
+                ValidationErrorType.AGE
+            ));
+        }
+        return validationErrors;
+    }
+
+    private Set<ValidationError> validateHeight(int height) {
+        Set<ValidationError> validationErrors = new HashSet<>();
+
+        if (height <= 0) {
+            validationErrors.add(new ValidationError(
+                "Height must be positive",
+                ValidationErrorType.HEIGHT
+            ));
+        }
+        return validationErrors;
+    }
+
+    private Set<ValidationError> validateWeight(int weight) {
+        Set<ValidationError> validationErrors = new HashSet<>();
+
+        if (weight < 0) {
+            validationErrors.add(new ValidationError(
+                "Weight must be positive",
+                ValidationErrorType.WEIGHT
+            ));
+        }
+        return validationErrors;
+    }
+
+    static class ValidationError extends RuntimeException {
+        private final String message;
+        private final ValidationErrorType type;
+
+        ValidationError(String message, ValidationErrorType type) {
+            this.message = message;
+            this.type = type;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+
+        public ValidationErrorType getType() {
+            return type;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (!(obj instanceof ValidationError)) {
+                return false;
+            }
+            return hashCode() == obj.hashCode();
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(message, type);
+        }
+    }
 }

@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -50,6 +51,7 @@ public class TestForMethods {
         assertEquals(expected, actual);
 
     }
+
     @Test
     @DisplayName("task 2")
     public final void test2() {
@@ -98,6 +100,7 @@ public class TestForMethods {
         assertEquals(expected, actual);
 
     }
+
     @Test
     @DisplayName("task 3")
     public final void test3() {
@@ -150,6 +153,7 @@ public class TestForMethods {
         assertEquals(expected, actual);
 
     }
+
     @Test
     @DisplayName("task 4")
     public final void test4() {
@@ -188,6 +192,7 @@ public class TestForMethods {
         assertEquals(animal1, actual);
 
     }
+
     @Test
     @DisplayName("task 5")
     public final void test5() {
@@ -235,6 +240,7 @@ public class TestForMethods {
         assertEquals(Animal.Sex.F, actual);
 
     }
+
     @Test
     @DisplayName("task 6")
     public final void test6() {
@@ -287,6 +293,7 @@ public class TestForMethods {
         assertEquals(expected, actual);
 
     }
+
     @Test
     @DisplayName("task 7")
     public final void test7() {
@@ -329,13 +336,12 @@ public class TestForMethods {
 
         List<Animal> animals = List.of(animal2, animal1, animal4, animal3);
 
-
-
         Animal actual = methods.kthOldest(animals, 3);
 
         assertEquals(animal2, actual);
 
     }
+
     @Test
     @DisplayName("task 8")
     public final void test8() {
@@ -378,12 +384,12 @@ public class TestForMethods {
 
         List<Animal> animals = List.of(animal2, animal1, animal4, animal3);
 
-
         Animal actual = methods.heaviestBelowK(animals, 100).get();
 
         assertEquals(animal1, actual);
 
     }
+
     @Test
     @DisplayName("task 9")
     public final void test9() {
@@ -426,12 +432,12 @@ public class TestForMethods {
 
         List<Animal> animals = List.of(animal2, animal1, animal4, animal3);
 
-
         Integer actual = methods.sumOfPaws(animals);
 
         assertEquals(16, actual);
 
     }
+
     @Test
     @DisplayName("task 10")
     public final void test10() {
@@ -480,6 +486,7 @@ public class TestForMethods {
         assertEquals(expected, actual);
 
     }
+
     @Test
     @DisplayName("task 11")
     public final void test11() {
@@ -528,6 +535,7 @@ public class TestForMethods {
         assertEquals(expected, actual);
 
     }
+
     @Test
     @DisplayName("task 12")
     public final void test12() {
@@ -575,6 +583,7 @@ public class TestForMethods {
         assertEquals(2, actual);
 
     }
+
     @Test
     @DisplayName("task 13")
     public final void test13() {
@@ -623,6 +632,7 @@ public class TestForMethods {
         assertEquals(expected, actual);
 
     }
+
     @Test
     @DisplayName("task 14")
     public final void test14() {
@@ -670,6 +680,7 @@ public class TestForMethods {
         assertTrue(actual);
 
     }
+
     @Test
     @DisplayName("task 15")
     public final void test15() {
@@ -724,6 +735,7 @@ public class TestForMethods {
         assertEquals(expected, actual);
 
     }
+
     @Test
     @DisplayName("task 16")
     public final void test16() {
@@ -866,9 +878,80 @@ public class TestForMethods {
 
         List<List<Animal>> animals = List.of(animals1, animals2);
 
-        Animal actual = methods.HeaviestFish(animals);
+        Animal actual = methods.heaviestFish(animals);
 
         assertEquals(animal1, actual);
+
+    }
+
+    @Test
+    @DisplayName("task 19")
+    public final void test19() {
+        Animal animal1 = new Animal(
+            "some",
+            null,
+            null,
+            -1,
+            0,
+            -50,
+            false
+        );
+
+        List<Animal> animals = List.of(animal1);
+
+        Set<Methods.ValidationError> expected = Set.of(
+            new Methods.ValidationError(
+                "Name must starts with capital character",
+                Methods.ValidationErrorType.NAME
+            ),
+            new Methods.ValidationError(
+                "Type cannot be null",
+                Methods.ValidationErrorType.TYPE
+            ),
+            new Methods.ValidationError(
+                "Sex cannot be null",
+                Methods.ValidationErrorType.SEX
+            ),
+            new Methods.ValidationError(
+                "Age must be non-negative",
+                Methods.ValidationErrorType.AGE
+            ),
+            new Methods.ValidationError(
+                "Height must be positive",
+                Methods.ValidationErrorType.HEIGHT
+            ),
+            new Methods.ValidationError(
+                "Weight must be positive",
+                Methods.ValidationErrorType.WEIGHT
+            )
+        );
+
+        Set<Methods.ValidationError> actual = methods.animalError(animals).get("some");
+
+        assertEquals(expected, actual);
+
+    }
+
+    @Test
+    @DisplayName("task 20")
+    public final void test20() {
+        Animal animal1 = new Animal(
+            "",
+            null,
+            Animal.Sex.F,
+            -1,
+            0,
+            -50,
+            false
+        );
+
+        List<Animal> animals = List.of(animal1);
+
+        String expected = "AGE; HEIGHT; NAME; TYPE; WEIGHT";
+
+        String actual = methods.animalErrorToString(animals).get("");
+
+        assertEquals(expected, actual);
 
     }
 }
