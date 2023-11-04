@@ -47,7 +47,7 @@ public class Methods {
     //task 4 У какого животного самое длинное имя -> Animal
     public Animal getLongestNameAnimal(List<Animal> animals) {
         return animals.stream()
-            .max(Comparator.comparing(animal -> animal.name().length()))
+            .max(Comparator.comparingInt(animal -> animal.name().length()))
             .orElseThrow();
     }
 
@@ -56,11 +56,13 @@ public class Methods {
         int maleCount = (int) animals.stream()
             .filter(animal -> animal.sex() == Sex.M)
             .count();
+        int femaleCount = animals.size() - maleCount;
 
-        if (2 * maleCount > animals.size()) {
+        if (femaleCount > maleCount) {
+            return Sex.F;
+        } else {
             return Sex.M;
         }
-        return Sex.F;
     }
 
     //task 6 Самое тяжелое животное каждого вида -> Map<Animal.Type, Animal>
@@ -69,7 +71,7 @@ public class Methods {
             .collect(Collectors.toMap(
                 Animal::type,
                 Function.identity(),
-                BinaryOperator.maxBy(Comparator.comparing(Animal::weight))
+                BinaryOperator.maxBy(Comparator.comparingInt(Animal::weight))
             ));
     }
 
@@ -86,11 +88,11 @@ public class Methods {
     public Optional<Animal> heaviestBelowK(List<Animal> animals, int k) {
         return animals.stream()
             .filter(animal -> animal.height() < k)
-            .max(Comparator.comparing(Animal::weight));
+            .max(Comparator.comparingInt(Animal::weight));
     }
 
     //task 9 Сколько в сумме лап у животных в списке -> Integer
-    public Integer sumOfPaws(List<Animal> animals) {
+    public int sumOfPaws(List<Animal> animals) {
         return animals.stream()
             .mapToInt(Animal::paws)
             .sum();
@@ -126,7 +128,7 @@ public class Methods {
     }
 
     //task 14 Есть ли в списке собака ростом более k см -> Boolean
-    public Boolean isInListDogMoreThanK(List<Animal> animals, int k) {
+    public boolean isInListDogMoreThanK(List<Animal> animals, int k) {
         return animals.stream()
             .anyMatch(animal -> animal.type() == Type.DOG && animal.height() > k);
     }
@@ -135,7 +137,7 @@ public class Methods {
     // -> Map<Animal.Type, Integer>
     public Map<Type, Integer> sumWeightEachType(List<Animal> animals, int k, int l) {
         return animals.stream()
-            .filter(animal -> animal.age() <= l && animal.age() >= k)
+            .filter(animal -> k <= animal.age() && animal.age() <= l)
             .collect(Collectors.groupingBy(
                 Animal::type,
                 Collectors.summingInt(Animal::weight)
