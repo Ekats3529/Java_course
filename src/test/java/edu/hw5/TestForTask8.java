@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestForTask8 {
+
     @ParameterizedTest
     @CsvSource({
         "111, true",
@@ -92,8 +93,5 @@ public class TestForTask8 {
 
         assertEquals(expected, actual);
     }
-
-
-
 
 }

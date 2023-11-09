@@ -2,14 +2,14 @@ package edu.hw5;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.Month;
-import java.time.temporal.TemporalAdjuster;
-import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-public class Task2 {
+public final class Task2 {
+    private Task2() {
+
+    }
+
     private static final int THIRTEEN = 13;
     private static final int MONTHS_COUNT = 12;
 
@@ -30,12 +30,12 @@ public class Task2 {
     public static LocalDate getTheClosestFridayThirteen(LocalDate date) {
         LocalDate newDate = date;
 
-        if (date.getDayOfMonth() > THIRTEEN){
+        if (date.getDayOfMonth() > THIRTEEN) {
             newDate = date.plusMonths(1);
         }
         newDate = newDate.withDayOfMonth(THIRTEEN);
 
-        while (newDate.getDayOfWeek() != DayOfWeek.FRIDAY){
+        while (newDate.getDayOfWeek() != DayOfWeek.FRIDAY) {
             newDate = newDate.plusMonths(1);
         }
         return newDate;
