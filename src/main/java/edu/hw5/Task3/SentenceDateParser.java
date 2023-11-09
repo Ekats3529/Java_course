@@ -6,11 +6,12 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@SuppressWarnings("MultipleStringLiterals")
 public class SentenceDateParser extends AbstractDateParser {
     public static final Pattern PATTERN = Pattern.compile(
         "^(?<count>\\d+) (?<dateType>day|week|month|year)(s)? (?<when>ago|after)$");
+
     public SentenceDateParser() {
-        super();
     }
 
     public SentenceDateParser(AbstractDateParser nextParser) {
@@ -21,14 +22,14 @@ public class SentenceDateParser extends AbstractDateParser {
     public Optional<LocalDate> parseDate(String stringDate) {
         Matcher matcher = PATTERN.matcher(stringDate);
 
-        if (matcher.find()){
+        if (matcher.find()) {
             int count = Integer.parseInt(matcher.group("count"));
             String dateType = matcher.group("dateType");
             String when = matcher.group("when");
 
             dateType = dateType.endsWith("s") ? dateType.substring(0, dateType.length() - 2) : dateType;
 
-            LocalDate parsedDate =  null;
+            LocalDate parsedDate = null;
 
             if (Objects.equals(when, "after")) {
                 parsedDate = switch (dateType) {

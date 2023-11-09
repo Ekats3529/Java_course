@@ -14,15 +14,12 @@ public abstract class AbstractDateParser {
         this.nextParser = nextParser;
     }
 
-    public Optional<LocalDate> parseDate(String stringDate){
+    public Optional<LocalDate> parseDate(String stringDate) {
         if (nextParser == null) {
             return Optional.empty();
         }
 
         return nextParser.parseDate(stringDate);
     }
-
-
-
 
 }

@@ -5,7 +5,6 @@ import java.util.Optional;
 
 public class WordDateParser extends AbstractDateParser {
     public WordDateParser() {
-        super();
     }
 
     public WordDateParser(AbstractDateParser nextParser) {
