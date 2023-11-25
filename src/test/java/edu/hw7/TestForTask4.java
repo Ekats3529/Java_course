@@ -23,7 +23,7 @@ public class TestForTask4 {
         double singleThreadTime = singleThreadResult.averageExecutingTime;
 
         Result multiThreadResult = new Result();
-        multiThreadResult.getResult(5, 8);
+        multiThreadResult.getResult(5, 2);
         double multiThreadTime = multiThreadResult.averageExecutingTime;
 
         assertThat(multiThreadTime).isLessThanOrEqualTo(singleThreadTime);

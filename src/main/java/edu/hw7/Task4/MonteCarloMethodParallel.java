@@ -10,7 +10,32 @@ public class MonteCarloMethodParallel {
     private static final Point CENTER = new Point(RADIUS, RADIUS);
     private static final int DEFAULT_POINTS_COUNT = 1000;
 
-    private record Point(double x, double y) {
+    @SuppressWarnings("MagicNumber")
+    public double calculatePiAsync(int threadsAmount) {
+        List<Thread> threads = new ArrayList<>();
+        AtomicInteger pointsInCircle = new AtomicInteger();
+
+        for (int i = 0; i < threadsAmount; i++) {
+            threads.add(
+                new Thread(() ->
+                    pointsInCircle.addAndGet(
+                        getRandomCountOfPointsInCircle(DEFAULT_POINTS_COUNT / threadsAmount)
+                    )
+                )
+            );
+            Thread curThread = threads.get(threads.size() - 1);
+            curThread.start();
+        }
+
+        threads.forEach(thread -> {
+                try {
+                    thread.join();
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        );
+        return 4 * ((double) pointsInCircle.get() / DEFAULT_POINTS_COUNT);
     }
 
     private double getDistance(Point a, Point b) {
@@ -21,10 +46,10 @@ public class MonteCarloMethodParallel {
         return getDistance(CENTER, point) <= RADIUS;
     }
 
-    private int getRandomCountOfPointsInCircle() {
+    private int getRandomCountOfPointsInCircle(int pointsCount) {
         int circleCount = 0;
 
-        for (int i = 0; i < DEFAULT_POINTS_COUNT; i++) {
+        for (int i = 0; i < pointsCount; i++) {
             Point randomPoint = getRandomPoint();
             if (isInCircle(randomPoint)) {
                 circleCount++;
@@ -40,32 +65,7 @@ public class MonteCarloMethodParallel {
         );
     }
 
-    @SuppressWarnings("MagicNumber")
-    public double calculatePiAsync(int threadsAmount) {
-        List<Thread> threads = new ArrayList<>();
-        AtomicInteger pointsInCircle = new AtomicInteger();
-
-        for (int i = 0; i < threadsAmount; i++) {
-            threads.add(
-                new Thread(() ->
-                    pointsInCircle.addAndGet(
-                        getRandomCountOfPointsInCircle()
-                    )
-                )
-            );
-            Thread curThread = threads.getLast();
-            curThread.start();
-        }
-
-        threads.forEach(thread -> {
-                try {
-                    thread.join();
-                } catch (Exception ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
-        );
-        int totalCount = DEFAULT_POINTS_COUNT * threadsAmount;
-        return 4 * ((double) pointsInCircle.get() / totalCount);
+    private record Point(double x, double y) {
     }
+
 }

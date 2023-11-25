@@ -1,9 +1,9 @@
 package edu.hw7.Task3;
 
-import org.jetbrains.annotations.Nullable;
 import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
-public class SynchronizedPersonDatabase extends SimplePersonDatabase{
+public class SynchronizedPersonDatabase extends SimplePersonDatabase {
     public synchronized void add(Person person) {
         super.add(person);
     }

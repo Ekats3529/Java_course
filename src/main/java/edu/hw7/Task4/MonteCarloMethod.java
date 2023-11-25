@@ -5,7 +5,21 @@ import java.util.concurrent.ThreadLocalRandom;
 public class MonteCarloMethod {
     private static final double RADIUS = 1;
     private static final Point CENTER = new Point(RADIUS, RADIUS);
-    private record Point(double x, double y) {
+
+    @SuppressWarnings("MagicNumber")
+    public double calculatePi(int pointsAmount) {
+        int circleCount = 0;
+        int totalCount = 0;
+
+        for (int i = 0; i < pointsAmount; i++) {
+            Point randomPoint = getRandomPoint();
+            if (isInCircle(randomPoint)) {
+                circleCount++;
+            }
+            totalCount++;
+        }
+
+        return 4 * ((double) circleCount / totalCount);
     }
 
     private double getDistance(Point a, Point b) {
@@ -23,20 +37,7 @@ public class MonteCarloMethod {
         );
     }
 
-    @SuppressWarnings("MagicNumber")
-    public double calculatePi(int pointsAmount) {
-        int circleCount = 0;
-        int totalCount = 0;
-
-        for (int i = 0; i < pointsAmount; i++) {
-            Point randomPoint = getRandomPoint();
-            if (isInCircle(randomPoint)) {
-                circleCount++;
-            }
-            totalCount++;
-        }
-
-        return 4 * ((double) circleCount / totalCount);
+    private record Point(double x, double y) {
     }
 
 }
