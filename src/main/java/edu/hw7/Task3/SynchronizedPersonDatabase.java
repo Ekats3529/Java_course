@@ -1,30 +1,26 @@
 package edu.hw7.Task3;
 
+import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
-public class SynchronizedPersonDatabase implements PersonDatabase{
-    @Override
-    public void add(Person person) {
-
+public class SynchronizedPersonDatabase extends SimplePersonDatabase{
+    public synchronized void add(Person person) {
+        super.add(person);
     }
 
-    @Override
-    public void delete(int id) {
-
+    public synchronized void delete(int id) {
+        super.delete(id);
     }
 
-    @Override
-    public List<Person> findByName(String name) {
-        return null;
+    public synchronized @Nullable List<Person> findByName(String name) {
+        return super.findByName(name);
     }
 
-    @Override
-    public List<Person> findByAddress(String address) {
-        return null;
+    public synchronized @Nullable List<Person> findByAddress(String address) {
+        return super.findByAddress(address);
     }
 
-    @Override
-    public List<Person> findByPhone(String phone) {
-        return null;
+    public synchronized @Nullable List<Person> findByPhone(String phone) {
+        return super.findByPhone(phone);
     }
 }
