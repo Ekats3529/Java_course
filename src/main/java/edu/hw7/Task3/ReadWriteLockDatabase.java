@@ -1,14 +1,13 @@
 package edu.hw7.Task3;
 
-import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-public class ReadWriteLockDatabase extends SimplePersonDatabase{
+public class ReadWriteLockDatabase extends SimplePersonDatabase {
     private static final ReentrantReadWriteLock RW_LOCK = new ReentrantReadWriteLock();
 
     public void add(Person newPerson) {
-            RW_LOCK.writeLock().lock();
+        RW_LOCK.writeLock().lock();
         try {
             super.add(newPerson);
         } finally {
