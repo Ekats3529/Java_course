@@ -1,5 +1,7 @@
 package edu.hw7;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
@@ -9,19 +11,23 @@ public class Task1 {
     }
 
     public static int incrementParallel(int num, int threads) throws InterruptedException {
-        CountDownLatch countDownLatch = new CountDownLatch(threads);
+        List<Thread> threadList = new ArrayList<>();
         var res = new AtomicInteger(num);
 
-        Stream.generate(() ->
-                new Thread(() -> {
-                    res.incrementAndGet();
-                    countDownLatch.countDown();
-                })
-            )
-            .limit(threads)
-            .forEach(Thread::start);
+        for (int i = 0; i < threads; i++) {
+            threadList.add(new Thread(res::incrementAndGet));
+            Thread curThread = threadList.get(threadList.size() - 1);
+            curThread.start();
+        }
 
-        countDownLatch.await();
+        threadList.forEach(thread -> {
+                try {
+                    thread.join();
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        );
 
         return res.get();
 
